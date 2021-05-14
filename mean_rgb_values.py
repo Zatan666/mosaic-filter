@@ -31,6 +31,7 @@ def mean_img_rgb(grid):
 if __name__ == "__main__":
     piece = Image.open("./pic/test.png")
     print(mean_img_rgb(piece))
+<<<<<<< HEAD
 
 
 
@@ -40,3 +41,5 @@ if __name__ == "__main__":
 
 
 
+=======
+>>>>>>> e94ae220b08e017071febc80c104aaf2113a479e
