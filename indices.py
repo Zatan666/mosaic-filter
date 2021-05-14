@@ -40,8 +40,8 @@ if __name__ == '__main__':
     #print('pixes by num input', pixels_by_num(im, 117))
     indices = pixels_by_size(im, (64, 64))
     sample = Image.new('RGB', (63, 63), (0,0,0))
-    for i in indices[:5]:
-        print('pixels indices', i)
+    for i in indices:
+        #print('pixels indices', i)
         im.paste(sample, (i[:2]))
     im.show()
     im.close()
