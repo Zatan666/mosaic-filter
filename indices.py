@@ -7,8 +7,8 @@ def pixels_by_size(image: Image, size: "(Width, Height)") -> list:
     give pixels index of each grid by input of size
     """
     x_step, y_step = size
-    indices = [(i, j) for i in range(0, image.width, x_step)
-                      for j in range(0, image.height, y_step)]
+    indices = [(i, j, i+x_step-1, j+y_step-1) for i in range(0, image.width, x_step)
+                                              for j in range(0, image.height, y_step)]
     return indices
 
 
@@ -39,9 +39,9 @@ if __name__ == '__main__':
     im = Image.open('./pic/test.png')
     #print('pixes by num input', pixels_by_num(im, 117))
     indices = pixels_by_size(im, (64, 64))
-    print('pixels indices', max(indices, key=lambda x: x[1]))
-    sample = Image.new('RGB', (10, 10), (0, 0, 0))
-    for index in indices:
-        im.paste(sample, index)
+    sample = Image.new('RGB', (63, 63), (0,0,0))
+    for i in indices[:5]:
+        print('pixels indices', i)
+        im.paste(sample, (i[:2]))
     im.show()
     im.close()
