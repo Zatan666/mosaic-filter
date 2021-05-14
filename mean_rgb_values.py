@@ -28,6 +28,15 @@ def mean_img_rgb(grid):
     return mean_main
 
 
+if __name__ == "__main__":
+    piece = Image.open("./pic/test.png")
+    print(mean_img_rgb(piece))
 
-piece = Image.open("./pic/test.png")
-print(mean_img_rgb(piece))
+
+
+    
+
+
+
+
+
