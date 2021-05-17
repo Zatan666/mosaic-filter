@@ -11,7 +11,6 @@ print('number of grid by size 64x64', len(indices))
 for index in indices:
     grid = im.crop(index)
     grid_rgb =  mean_img_rgb(grid)
-    print(grid_rgb, grid.size)
     piece = Image.new('RGB', (64, 64), grid_rgb)
     im.paste(piece, index[:2])
     
