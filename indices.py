@@ -19,12 +19,11 @@ def pixels_by_num(image: Image, num: int) -> list:
     num = round(sqrt(num))
     nearest_sq = num ** 2
     
-    x_step, y_step = [size / num for size in image.size]
+    x_step, y_step = [round(size / num) for size in image.size]
+    indices = [(i, j) for i in range(0, image.width, x_step)
+                      for j in range(0, image.height, y_step)]
 
-    indices = [(j, i) for i in range(0, image.height, h_step)
-                      for j in range(0, image.width, w_step)]
-
-    return nearest_sq
+    return indices
 
 
 def dimention(image: Image) -> (int, int):
@@ -37,11 +36,12 @@ def dimention(image: Image) -> (int, int):
 
 if __name__ == '__main__':
     im = Image.open('./pic/test.png')
-    #print('pixes by num input', pixels_by_num(im, 117))
     indices = pixels_by_size(im, (64, 64))
-    print('pixels indices', max(indices, key=lambda x: x[1]))
-    sample = Image.new('RGB', (10, 10), (0, 0, 0))
-    for index in indices:
-        im.paste(sample, index)
-    im.show()
+    print('number of grid by size 64x64', len(indices))
+    indices = pixels_by_num(im, 117)
+    print('number of grid by num 117', len(indices))
+    # sample = Image.new('RGB', (10, 10), (0, 0, 0))
+    # for index in indices:
+    #     im.paste(sample, index)
+    # im.show()
     im.close()
