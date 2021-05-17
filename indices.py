@@ -7,8 +7,8 @@ def pixels_by_size(image: Image, size: "(Width, Height)") -> list:
     give pixels index of each grid by input of size
     """
     x_step, y_step = size
-    indices = [(i, j) for i in range(0, image.width, x_step)
-                      for j in range(0, image.height, y_step)]
+    indices = [(i, j, i+x_step-1, j+y_step-1) for i in range(0, image.width, x_step)
+                                              for j in range(0, image.height, y_step)]
     return indices
 
 
@@ -20,8 +20,8 @@ def pixels_by_num(image: Image, num: int) -> list:
     nearest_sq = num ** 2
     
     x_step, y_step = [round(size / num) for size in image.size]
-    indices = [(i, j) for i in range(0, image.width, x_step)
-                      for j in range(0, image.height, y_step)]
+    indices = [(i, j, i+x_step-1, j+y_step-1) for i in range(0, image.width, x_step)
+                                              for j in range(0, image.height, y_step)]
 
     return indices
 
