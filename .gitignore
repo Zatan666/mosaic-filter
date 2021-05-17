@@ -1,1 +1,3 @@
 __pycache__/
+test_scrape.py
+geckodriver.log
