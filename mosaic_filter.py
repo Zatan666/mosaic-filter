@@ -9,14 +9,12 @@ indices = pixels_by_size(im, (64, 64))
 print('number of grid by size 64x64', len(indices))
 
 for index in indices:
-    
-    grid_rgb =  mean_img_rgb(im.crop(index))
+    grid = im.crop(index)
+    grid_rgb =  mean_img_rgb(grid)
     piece = Image.new('RGB', (64, 64), grid_rgb)
-    im.paste(piece, index)
+    im.paste(piece, index[:2])
     
 im.show()
-
 im.close()
-
 
 
