@@ -14,7 +14,7 @@ DRIVER_PATH = 'C:/student/GCD/mosaic/chromedriver_win32/chromedriver.exe'
 def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_between_interactions:int=1):
     def scroll_to_end(wd):
         wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(sleep_between_interactions)    
+        wd.implicitly_wait(5)
     
     # build the google query
     search_url = "https://www.google.com/search?safe=off&site=&tbm=isch&source=hp&q={q}&oq={q}&gs_l=img"
