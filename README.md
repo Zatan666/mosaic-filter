@@ -9,10 +9,10 @@
 - [ ] paste that grid with another picture with closest RGB values
 > open new problem with how to do this
 
-## Image scraping
+### Image scraping
 - [x] get more number of image by selenium webdriver (against infinite scrolling)
 - [x] get original image instead of result by google search (maybe by selenium clicking and stuff)
 > done with firefox, chrome webdriver
 
-## Method to choosing image to replace in grid
+### Method to choosing image to replace in grid
 - [ ] sum(abs(rgb difference))
