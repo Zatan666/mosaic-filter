@@ -13,6 +13,7 @@ def compare1(grid_rgb: ('r','g','b'), list_rgb:[('r','g','b')]):
 def list_mean_rgb(q: 'search'):
     path = f'pic/{q}/'
     files = os.listdir(path)
+    files = [i for i in files if i.endswith('.png')]
     list_mean = []
     for i in files:
         img = Image.open(path + i)
