@@ -9,5 +9,6 @@ step for developing
 - [ ] paste that grid with another picture with closest RGB values
 
 step for getting resource (image scraping)
-- [ ] get more number of image by selenium webdriver (against infinite scrolling)
-- [ ] get original image instead of result by google search (maybe by selenium clicking and stuff)
+- [x] get more number of image by selenium webdriver (against infinite scrolling)
+- [x] get original image instead of result by google search (maybe by selenium clicking and stuff)
+> done with firefox, chrome webdriver
