@@ -31,4 +31,4 @@ def mean_img_rgb(grid):
 if __name__ == "__main__":
     piece = Image.open("./pic/test.png")
     print(mean_img_rgb(piece))
-
+    piece.close()
