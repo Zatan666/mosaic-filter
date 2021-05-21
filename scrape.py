@@ -1,4 +1,3 @@
-import selenium
 from selenium import webdriver
 import time
 import requests
@@ -17,7 +16,8 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_betw
         wd.implicitly_wait(5)
     
     # build the google query
-    search_url = "https://www.google.com/search?safe=off&site=&tbm=isch&source=hp&q={q}&oq={q}&gs_l=img"
+    search_url = 'https://www.google.com/search?&tbm=isch&q={q}'
+    #search_url = "https://www.google.com/search?safe=off&site=&tbm=isch&source=hp&q={q}&oq={q}&gs_l=img"
 
     # load the page
     wd.get(search_url.format(q=query))
@@ -27,7 +27,6 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_betw
     results_start = 0
     while image_count < max_links_to_fetch:
         scroll_to_end(wd)
-
         # get all image thumbnail results
         thumbnail_results = wd.find_elements_by_css_selector("img.Q4LuWd")
         number_results = len(thumbnail_results)
@@ -42,12 +41,15 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_betw
             except Exception:
                 continue
 
-            # extract image urls    
+            # extract image urls 
+            '''   
             actual_images = wd.find_elements_by_css_selector('img.n3VNCb')
             for actual_image in actual_images:
                 if actual_image.get_attribute('src') and 'http' in actual_image.get_attribute('src'):
                     image_urls.add(actual_image.get_attribute('src'))
-
+            '''
+            actual_image = wd.find_element_by_xpath("//div[@class='tvh9oe BIB1wf']//img[@class='n3VNCb']")
+            image_urls.add(actual_image.get_attribute('src'))
             image_count = len(image_urls)
 
             if len(image_urls) >= max_links_to_fetch:
@@ -84,25 +86,22 @@ def persist_image(folder_path:str,file_name:str,url:str):
             file_path = os.path.join(folder_path,hashlib.sha1(image_content).hexdigest()[:10] + '.jpg')
         with open(file_path, 'wb') as f:
             image.save(f, "JPEG", quality=85)
-        print(f"SUCCESS - saved {url} - as {file_path}")
+        print(f"SUCCESS")
     except Exception as e:
-        print(f"ERROR - Could not save {url} - {e}")
+        print(f"ERROR - Could not save ")
 
 if __name__ == '__main__':
     wd = webdriver.Chrome(executable_path=DRIVER_PATH)
-    queries = []
-    key1 = input('keyword1 : ')
-    key2 = input('keyword2 : ')
-    queries.append(key1) 
-    queries.append(key2)
-    for query in queries:
-        wd.get('https://google.com')
-        search_box = wd.find_element_by_css_selector('input.gLFyf')
-        search_box.send_keys(query)
-        num = int(input('Num of image : '))
-        links = fetch_image_urls(query,num,wd)
+    query = 'bee' #int(input('Number of keyword : '))
+    num = 10
+
+    #wd.get('https://google.com')
+    search_box = wd.find_element_by_css_selector('input.gLFyf')
+    search_box.send_keys(query)
+        
+    links = fetch_image_urls(query,num,wd)
         #enter your image path
-        images_path = 'C:/student/GCD/mosaic/chromedriver_win32/pic'
-        for i in links:
-            persist_image(images_path,query,i)
-    wd.quit()
+    images_path = 'C:/student/GCD/mosaic/chromedriver_win32/pic'
+    for i in links:
+        persist_image(images_path,query,i)
+wd.quit()
