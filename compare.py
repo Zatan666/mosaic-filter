@@ -1,6 +1,7 @@
 from mean_rgb_values import mean_img_rgb
 from indices import pixels_by_size
 from PIL import Image
+import os
 
 def compare1(grid_rgb: ('r','g','b'), list_rgb:[('r','g','b')]):
     diffs = [sum(abs(i - j) for i, j in zip(grid_rgb, rgb))
@@ -10,8 +11,14 @@ def compare1(grid_rgb: ('r','g','b'), list_rgb:[('r','g','b')]):
     min_img = list_rgb[min_index]
     return min_img, min_index
 
-def list_mean_rgb(list_img:[Image]):
-    list_mean = [mean_img_rgb(i) for i in list_img]
+def list_mean_rgb(q: 'search'):
+    path = f'pic/{q}/'
+    files = os.listdir(path)
+    list_mean = []
+    for i in files:
+        img = Image.open(path + i)
+        list_mean.append(mean_img_rgb(img))
+        img.close()
     return list_mean
 
 if __name__ == '__main__':
