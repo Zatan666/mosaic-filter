@@ -10,10 +10,15 @@ def compare1(grid_rgb: ('r','g','b'), list_rgb:[('r','g','b')]):
     min_img = list_img2[min_index]
     return min_img, min_index
 
-def list_mean_rgb(q: 'search'):
-    path = f'pic/{q}/'
-    files = os.listdir(path)
-    files = [i for i in files if i.endswith('.png')]
+def list_mean_rgb(q: 'search' = None):
+    if q is None:
+        path = 'pic/'
+        files = os.listdir(path)
+        files = [i for i in files if i.endswith('.png')]
+    else:
+        path = f'pic/{q}/'
+        files = os.listdir(path)
+
     list_mean = []
     for i in files:
         img = Image.open(path + i)
@@ -22,4 +27,6 @@ def list_mean_rgb(q: 'search'):
     return list_mean
 
 if __name__ == '__main__':
-    pass
+    l = list_mean_rgb()
+    for i in l:
+        print(i)
