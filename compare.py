@@ -27,7 +27,7 @@ def list_mean_rgb(q: 'search' = None):
         img = Image.open(path + i)
         list_mean.append(mean_img_rgb(img))
         img.close()
-    return list_mean
+    return files, list_mean
 
 def screening(grid_rgb,pieces_rgb):
     r_screen = []
