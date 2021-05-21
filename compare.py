@@ -1,5 +1,6 @@
 from mean_rgb_values import mean_img_rgb
 from indices import pixels_by_size
+from mean_rgb_values import mean_img_rgb
 from PIL import Image
 import os
 
@@ -11,19 +12,21 @@ def compare1(grid_rgb: ('r','g','b'), list_rgb:[('r','g','b')]):
     min_img = list_rgb[min_index]
     return min_img, min_index
 
-def list_mean_rgb(q: 'search'):
-    path = f'pic/{q}/'
-    files = os.listdir(path)
-    files = [i for i in files if i.endswith('.png')]
+def list_mean_rgb(q: 'search' = None):
+    if q is None:
+        path = 'pic/'
+        files = os.listdir(path)
+        files = [i for i in files if i.endswith('.png')]
+    else:
+        path = f'pic/{q}/'
+        files = os.listdir(path)
+
     list_mean = []
     for i in files:
         img = Image.open(path + i)
         list_mean.append(mean_img_rgb(img))
         img.close()
     return list_mean
-
-if __name__ == '__main__':
-    pass
 
 def screening(grid_rgb,pieces_rgb):
     r_screen = []
@@ -58,19 +61,20 @@ def screening(grid_rgb,pieces_rgb):
 from os import listdir
 images = listdir('./pic/')
 
-    
-im = Image.open('./pic/test.png')
-indices = pixels_by_size(im, (64, 64))
-print('number of grid by size 64x64', len(indices))
+if __name__ == '__main__':
+    im = Image.open('./pic/test.png')
+    indices = pixels_by_size(im, (64, 64))
+    print('number of grid by size 64x64', len(indices))
+    for index in indices[:5]:
+        grid = im.crop(index)
+        grid_rgb = mean_img_rgb(grid)
+        piece1 = images[screening(grid_rgb,list_mean_rgb())[1]]
+        # piece = Image.new('RGB', (64, 64), grid_rgb)
+        piece = Image.open('./pic/'+piece1)
+        im.paste(piece, index[:2])
 
-for index in indices:
-    grid = im.crop(index)
-    grid_rgb =  mean_img_rgb(grid)
-    piece = screening(grid_rgb,list_mean_rgb(images))
-    #piece = Image.new('RGB', (64, 64), grid_rgb)
+    im.show()
+    im.close()
 
-    im.paste(piece, index[:2])
-    
-im.show()
-im.close()
+
 
