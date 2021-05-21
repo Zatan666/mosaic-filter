@@ -66,7 +66,7 @@ if __name__ == '__main__':
     im = Image.open('./pic/test.png')
     indices = pixels_by_size(im, (64, 64))
     print('number of grid by size 64x64', len(indices))
-    for index in indices[:5]:
+    for index in indices:
         grid = im.crop(index)
         grid_rgb = mean_img_rgb(grid)
         piece1 = images[screening(grid_rgb,list_mean_rgb())[1]]
