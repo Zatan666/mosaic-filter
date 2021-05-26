@@ -52,7 +52,7 @@ def screening(grid_rgb,pieces_rgb):
         diff = []
         for piece_rgb in b_screen:
             diff.append(tuple(numpy.subtract(grid_rgb , piece_rgb)))
-            min_diff = min(diff)
+        min_diff = min(diff)
         min_index = diff.index(min_diff)
         min_pieces = b_screen[min_index]
         print('con 1')
@@ -61,7 +61,7 @@ def screening(grid_rgb,pieces_rgb):
         diff = []
         for piece_rgb in g_screen:
             diff.append(tuple(numpy.subtract(grid_rgb , piece_rgb)))
-            min_diff = min(diff)
+        min_diff = min(diff)
         min_index = diff.index(min_diff)
         min_pieces = g_screen[min_index]
         print('con 2')
