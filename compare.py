@@ -57,8 +57,8 @@ def screening(grid_rgb,pieces_rgb):
         a = b_screen[min_index]
         min_index = pieces_rgb.index(a)
         min_piece = pieces_rgb[min_index]
-        print('con 1')
-        print(min_piece)
+        # print('con 1')
+        # print(min_piece)
         return min_piece, min_index
     elif len(b_screen) == 0 and len(g_screen) >= 1:
         diff = []
@@ -69,13 +69,13 @@ def screening(grid_rgb,pieces_rgb):
         a = g_screen[min_index]
         min_index = pieces_rgb.index(a)
         min_piece = pieces_rgb[min_index]
-        print('con 2')
-        print(min_piece)
+        # print('con 2')
+        # print(min_piece)
         return min_piece, min_index
     else:
         min_piece, min_index = compare1(grid_rgb,pieces_rgb)
-        print('con 3')
-        print(min_piece)
+        # print('con 3')
+        # print(min_piece)
         return min_piece, min_index
 
 
@@ -84,18 +84,18 @@ images, l = list_mean_rgb()
 
 if __name__ == '__main__':
     im = Image.open('./pic/test.png')
-    print(im.size, '\n')
+    # print(im.size, '\n')
     indices = pixels_by_size(im, (64, 64))
-    print('number of grid by size 64x64', len(indices))
+    # print('number of grid by size 64x64', len(indices))
     for index in indices:
-        print(index)
+        # print(index)
         grid = im.crop(index)
         grid_rgb = mean_img_rgb(grid)
         piece1 = images[screening(grid_rgb,l)[1]]
         # piece = Image.new('RGB', (64, 64), grid_rgb)
         piece = Image.open('./pic/'+piece1)
         im.paste(piece, index[:2])
-        print(grid_rgb)
-        print()
+        # print(grid_rgb)
+        # print()
     im.show()
     im.close()
