@@ -7,7 +7,7 @@ def pixels_by_size(image: Image, size: "(Width, Height)") -> list:
     give pixels index of each grid by input of size
     """
     x_step, y_step = size
-    indices = [(i, j, min(i+x_step, image.width), min(j+y_step, image.width))
+    indices = [(i, j, min(i+x_step, image.width), min(j+y_step, image.height))
                for i in range(0, image.width, x_step)
                for j in range(0, image.height, y_step)]
     return indices
