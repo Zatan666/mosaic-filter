@@ -15,10 +15,12 @@ def compare1(grid_rgb: (int, int, int), list_rgb:[(int, int, int)]):
 
 def list_mean_rgb(q: 'search' = None):
     if q is None:
-        path = 'pic/'
+        path = 'pic/doom+game/'
         files = os.listdir(path)
-        files = [i for i in files if i.endswith('.png')]
-        files.remove('test.png')
+        #files = [i for i in files if i.endswith('.png')]
+        files.remove('1.jpg')
+        #files.remove('test.png')
+
     else:
         path = f'pic/{q}/'
         files = os.listdir(path)

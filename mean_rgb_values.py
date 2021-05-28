@@ -3,7 +3,6 @@
 from PIL import Image
 
 def mean_img_rgb(grid):
-    
     width,height =  grid.size
     scale = width*height
     
