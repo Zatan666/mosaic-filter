@@ -1,12 +1,18 @@
 from PIL import Image
 
-im = Image.open('./pic/test.png')
-im.show()
-colors = (99, 138, 23)
-factor = tuple(i / 255 for i in colors)
-for i in range(im.width):
-    for j in range(im.height):
-        rgb = im.getpixel((i, j))
-        im.putpixel((i, j), tuple(int(x * c) for x, c in zip(rgb, factor)))
-im.show()
-im.close()
+def boost_color(im: Image, color: (int, int, int)):
+    factor = tuple(i / 255 for i in color)
+    for i in range(im.width):
+        for j in range(im.height):
+            rgb = im.getpixel((i, j))
+            im.putpixel((i, j), tuple(map(lambda x: int(x[0] * x[1]), zip(rgb, factor))))
+    return im
+
+if __name__ == '__main__':
+    im = Image.open('./pic/test.png')
+    im.show()
+    color = (99, 138, 23)
+    im_boost = boost_color(im, color)
+    im_boost.show()
+    im.close()
+    im_boost.close()
