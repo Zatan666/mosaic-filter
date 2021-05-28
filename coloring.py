@@ -5,6 +5,7 @@ def boost_color(im: Image, color: (int, int, int)):
     for i in range(im.width):
         for j in range(im.height):
             rgb = im.getpixel((i, j))
+            print(rgb, factor)
             im.putpixel((i, j), tuple(map(lambda x: int(x[0] * x[1]), zip(rgb, factor))))
     return im
 

@@ -17,6 +17,7 @@ def list_mean_rgb(q: 'search' = None):
     if q is None:
         path = 'pic/doom+game/'
         files = os.listdir(path)
+        files.sort(key=lambda x: int(x.split('.')[0]))
         #files = [i for i in files if i.endswith('.png')]
         files.remove('1.jpg')
         #files.remove('test.png')
@@ -27,7 +28,10 @@ def list_mean_rgb(q: 'search' = None):
 
     list_mean = []
     for i in files:
+        print(i)
         img = Image.open(path + i)
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
         list_mean.append(mean_img_rgb(img))
         img.close()
     return files, list_mean
@@ -81,14 +85,13 @@ def screening(grid_rgb,pieces_rgb):
         return min_piece, min_index
 
 
-from os import listdir
-images, l = list_mean_rgb()
 
 if __name__ == '__main__':
     im = Image.open('./pic/test.png')
     # print(im.size, '\n')
     indices = pixels_by_size(im, (64, 64))
     # print('number of grid by size 64x64', len(indices))
+    images, l = list_mean_rgb()
     for index in indices:
         # print(index)
         grid = im.crop(index)
