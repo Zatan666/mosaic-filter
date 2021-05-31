@@ -13,27 +13,31 @@ def compare1(grid_rgb: (int, int, int), list_rgb:[(int, int, int)]):
     min_img = list_rgb[min_index]
     return min_img, min_index
 
-def list_mean_rgb(q: 'search' = None):
+def list_mean_rgb(q: 'search' = None, pix: (int, int) = (32, 32), select: int = 1):
     if q is None:
         path = 'pic/doom+game/'
         files = os.listdir(path)
         files.sort(key=lambda x: int(x.split('.')[0]))
         #files = [i for i in files if i.endswith('.png')]
-        files.remove('1.jpg')
+        files.remove(f'{select}.jpg')
         #files.remove('test.png')
 
     else:
         path = f'pic/{q}/'
         files = os.listdir(path)
+        files.sort(key=lambda x: int(x.split('.')[0]))
+        files.remove(f'{select}.jpg')
 
     list_mean = []
     for i in files:
-        print(i)
+        print(i, end='\r')
         img = Image.open(path + i)
         if img.mode != 'RGB':
             img = img.convert('RGB')
+        img = img.resize(pix)
         list_mean.append(mean_img_rgb(img))
         img.close()
+    print('list *ALL* rgb values complete')
     return files, list_mean
 
 def screening(grid_rgb,pieces_rgb):
