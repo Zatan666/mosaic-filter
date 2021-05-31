@@ -7,7 +7,7 @@ import requests
 import os.path
 
 
-q = 'doom+game'
+q = 'forest'
 url = f'https://www.google.com/search?&tbm=isch&q={q}'
 num = 1000
 
@@ -36,7 +36,10 @@ while num_count < num:
     num_count = len(elems)
     print(num_count)
     if curr_count == num_count:
-        driver.find_element_by_css_selector("input.mye4qd").click()
+        try:
+            driver.find_element_by_css_selector("input.mye4qd").click()
+        except:
+            break
         try:
             driver.find_element_by_css_selector("div.DwpMZe[data-status='3']")
             break
@@ -67,7 +70,10 @@ for i, img in enumerate(selected, 1):
     image = actual_image.get_attribute('src')
     print(image[:20])
 
-    r = requests.get(image)
+    try:
+        r = requests.get(image)
+    except:
+        continue
 
     path = f'pic/{q}/{i}.jpg'
     
