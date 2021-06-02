@@ -11,7 +11,7 @@ def boost_color(im: Image, color: (int, int, int)):
 
 
 def alpha_color(im: Image, alpha: int=100):
-    r, g, b, a = im.convert('RGBA').split()
+    r, g, b, a = im.split()
     a.putdata([(alpha)] * (a.width * a.height))
     merge = Image.merge('RGBA', (r, g, b, a))
     return merge
