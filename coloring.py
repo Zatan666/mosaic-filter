@@ -1,7 +1,7 @@
 from PIL import Image
 
 def boost_color(im: Image, color: (int, int, int)):
-    factor = tuple(i / 255 for i in color)
+    factor = tuple(i / 128 for i in color)
     for i in range(im.width):
         for j in range(im.height):
             rgb = im.getpixel((i, j))
