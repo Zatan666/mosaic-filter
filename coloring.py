@@ -1,7 +1,8 @@
 from PIL import Image
+from mean_rgb_values import mean_img_rgb
 
 def boost_color(im: Image, color: (int, int, int)):
-    factor = tuple(i / 128 for i in color)
+    factor = tuple(i / j for i, j in zip(color, mean_img_rgb(im)))
     for i in range(im.width):
         for j in range(im.height):
             rgb = im.getpixel((i, j))
@@ -18,14 +19,12 @@ def alpha_color(im: Image, alpha: int=100):
 
 
 if __name__ == '__main__':
-    im = Image.open('./pic/test.png')
+    im = Image.open('bright.jpg')
     im.show()
     # boost color
-    #color = (99, 138, 23)
-    #im_boost = boost_color(im, color)
-    #im_boost.show()
-    #im_boost.close()
-    im_alpha = alpha_color(im, 100)
-    im_alpha.show()
-    im_alpha.close()
+    color = (128, 128, 128)
+    im_boost = boost_color(im, color)
+    #im_boost = alpha_color(im, 100)
+    im_boost.show()
+    im_boost.close()
     im.close()
