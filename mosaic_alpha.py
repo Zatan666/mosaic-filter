@@ -7,6 +7,7 @@ from coloring import boost_color, alpha_color
 from compare import list_mean_rgb,compare1,screening
 import time
 import os
+from itertools import cycle
 
 if __name__ == '__main__':
     tic = time.process_time()
@@ -25,16 +26,16 @@ if __name__ == '__main__':
     indices = pixels_by_size(im, pix)
     # print('number of grid by size 64x64', len(indices))
     comp = len(indices)
-    for prog, (index, piece1) in enumerate(zip(indices, files), 1):
+    for prog, (index, file_name) in enumerate(zip(indices, cycle(files)), 1):
         #grid = im.crop(index)
         #grid_rgb = mean_img_rgb(grid)
-        # piece1 = images[screening(grid_rgb,l)[1]]
-        #piece1 = images[compare1(grid_rgb, l)[1]]
+        # file_name = images[screening(grid_rgb,l)[1]]
+        #file_name = images[compare1(grid_rgb, l)[1]]
         # piece = Image.new('RGB', (64, 64), grid_rgb)
-        piece = Image.open(f'./pic/{q}/'+piece1)
+        piece = Image.open(f'./pic/{q}/'+file_name)
         if piece.mode != 'RGBA':
             piece = piece.convert('RGBA')
-        #print(piece1)
+        #print(file_name)
         piece_resize = piece.resize(pix)
         piece_boost = alpha_color(piece_resize, 69)
         #im.paste(piece_resize, index[:2])

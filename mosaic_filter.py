@@ -10,8 +10,8 @@ import time
 if __name__ == '__main__':
     tic = time.process_time()
     q = 'forest'
-    pix = (8, 8)
-    select = 2
+    pix = (48, 48)
+    select = 475
     print(f'open {q} {select}.jpg ...')
     im = Image.open(f'pic/{q}/{select}.jpg')
     print('open and cal rgb other pic ...')
@@ -23,13 +23,13 @@ if __name__ == '__main__':
     for prog, index in enumerate(indices, 1):
         grid = im.crop(index)
         grid_rgb = mean_img_rgb(grid)
-        # piece1 = images[screening(grid_rgb,l)[1]]
-        piece1 = images[compare1(grid_rgb, l)[1]]
+        # file_name = images[screening(grid_rgb,l)[1]]
+        file_name = images[compare1(grid_rgb, l)[1]]
         # piece = Image.new('RGB', (64, 64), grid_rgb)
-        piece = Image.open(f'./pic/{q}/'+piece1)
+        piece = Image.open(f'./pic/{q}/'+file_name)
         if piece.mode != 'RGB':
             piece = piece.convert('RGB')
-        #print(piece1)
+        #print(file_name)
         piece_resize = piece.resize(pix)
         piece_boost = boost_color(piece_resize, grid_rgb)
         #im.paste(piece_resize, index[:2])
@@ -41,6 +41,3 @@ if __name__ == '__main__':
     im.close()
     toc = time.process_time()
     print(toc - tic)
-
-
-
