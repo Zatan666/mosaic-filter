@@ -7,7 +7,7 @@ for mosaic filter only
 
 additional for scraping image from google search
 
-`pip install selenium request`
+`pip install selenium requests`
 - and also [driver](https://selenium-python.readthedocs.io/installation.html#drivers) of your chosen
 
 ## Setup filter
