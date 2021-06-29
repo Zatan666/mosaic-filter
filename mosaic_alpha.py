@@ -12,12 +12,12 @@ from itertools import cycle
 if __name__ == '__main__':
     tic = time.process_time()
     q = 'forest'
-    pix = (48, 48)
-    select = 475
+    pix = (16, 16)
+    select = 373
     print(f'open {q} {select}.jpg ...')
     im = Image.open(f'pic/{q}/{select}.jpg')
     im = im.convert('RGBA')
-    print('open and cal rgb other pic ...')
+    #print('open and cal rgb other pic ...')
     #images, l = list_mean_rgb(q, pix, select)
     path = f'pic/{q}/'
     files = os.listdir(path)
