@@ -12,8 +12,13 @@ from itertools import cycle
 if __name__ == '__main__':
     tic = time.process_time()
     q = 'forest'
+<<<<<<< HEAD:mosaic_alpha.py
     pix = (16, 16)
     select = 373
+=======
+    pix = (16,16)
+    select = 0
+>>>>>>> 20f903fe3bfe61fceb0d6ce2f7072686908c4198:mosaic_2.py
     print(f'open {q} {select}.jpg ...')
     im = Image.open(f'pic/{q}/{select}.jpg')
     im = im.convert('RGBA')

@@ -20,7 +20,6 @@ def list_mean_rgb(q: 'search' = None, pix: (int, int) = (32, 32), select: int = 
         files.sort(key=lambda x: int(x.split('.')[0]))
         #files = [i for i in files if i.endswith('.png')]
         #files.remove('test.png')
-
     else:
         path = f'pic/{q}/'
         files = os.listdir(path)
