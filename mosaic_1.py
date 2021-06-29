@@ -10,8 +10,8 @@ import time
 if __name__ == '__main__':
     tic = time.process_time()
     q = 'forest'
-    pix = (48, 48)
-    select = 475
+    pix = (16,16)
+    select = 0
     print(f'open {q} {select}.jpg ...')
     im = Image.open(f'pic/{q}/{select}.jpg')
     print('open and cal rgb other pic ...')
