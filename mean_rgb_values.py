@@ -1,5 +1,3 @@
-#grid_rgb
-
 from PIL import Image
 
 def mean_img_rgb(grid):
@@ -23,9 +21,7 @@ def mean_img_rgb(grid):
     sum_blue = round(sum(blue)/scale)
             
     mean_main = sum_red,sum_green,sum_blue
-
     return mean_main
-
 
 if __name__ == "__main__":
     piece = Image.open("./pic/test.png")

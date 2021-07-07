@@ -18,8 +18,7 @@ def list_mean_rgb(q: 'search' = None, pix: (int, int) = (32, 32), select: int = 
         path = 'pic/doom+game/'
         files = os.listdir(path)
         files.sort(key=lambda x: int(x.split('.')[0]))
-        #files = [i for i in files if i.endswith('.png')]
-        #files.remove('test.png')
+
     else:
         path = f'pic/{q}/'
         files = os.listdir(path)
@@ -36,55 +35,6 @@ def list_mean_rgb(q: 'search' = None, pix: (int, int) = (32, 32), select: int = 
         img.close()
     print('list *ALL* rgb values complete')
     return files, list_mean
-
-def screening(grid_rgb,pieces_rgb):
-    rgb_range = 30
-    r_screen = []
-    g_screen = []
-    b_screen = []
-
-    for piece_rgb in pieces_rgb:
-        if piece_rgb[0] in range(grid_rgb[0]- rgb_range,grid_rgb[0]+rgb_range+1):
-            r_screen.append(piece_rgb)
-
-    for piece_rgb in r_screen:
-        if piece_rgb[1] in range(grid_rgb[1]-rgb_range,grid_rgb[1]+rgb_range+1):
-            g_screen.append(piece_rgb)
-
-    for piece_rgb in g_screen:
-        if piece_rgb[2] in range(grid_rgb[2]-rgb_range,grid_rgb[2]+rgb_range+1):
-            b_screen.append(piece_rgb)
-
-    if len(b_screen) > 1:
-        diff = []
-        for piece_rgb in b_screen:
-            diff.append(tuple(numpy.subtract(grid_rgb , piece_rgb)))
-        min_diff = min(diff)
-        min_index = diff.index(min_diff)
-        a = b_screen[min_index]
-        min_index = pieces_rgb.index(a)
-        min_piece = pieces_rgb[min_index]
-        # print('con 1')
-        # print(min_piece)
-        return min_piece, min_index
-    elif len(b_screen) == 0 and len(g_screen) >= 1:
-        diff = []
-        for piece_rgb in g_screen:
-            diff.append(tuple(numpy.subtract(grid_rgb , piece_rgb)))
-        min_diff = min(diff)
-        min_index = diff.index(min_diff)
-        a = g_screen[min_index]
-        min_index = pieces_rgb.index(a)
-        min_piece = pieces_rgb[min_index]
-        # print('con 2')
-        # print(min_piece)
-        return min_piece, min_index
-    else:
-        min_piece, min_index = compare1(grid_rgb,pieces_rgb)
-        # print('con 3')
-        # print(min_piece)
-        return min_piece, min_index
-
 
 
 if __name__ == '__main__':
