@@ -22,7 +22,7 @@ edit variable `q` to name of search term to use
 > and then you can skip using this file.
 
 ## Running filter
-run `scrape_firefox.py` first, then run `mosaic_filter.py` or `mosaic_alpha.py` by your preference
+run `scrape_firefox.py` first, then run `mosaic_1.py` or `mosaic_2.py` by your preference
 
 
 ## Developing stage
