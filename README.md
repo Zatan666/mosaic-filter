@@ -41,9 +41,9 @@ run `scrape_firefox.py` first, then run `mosaic_1.py` or `mosaic_2.py` by your p
 
 #### Method to choosing image to replace in grid
 - [x] sum(abs(rgb difference))
-#### Result 
-Type 1
+## Result 
+###Type 1
 ![alt text](https://github.com/Zatan666/mosaic-filter/blob/main/Picture1.png?raw=true)
 
-Type 2
+###Type 2
 ![alt text](https://github.com/Zatan666/mosaic-filter/blob/main/Picture2.png?raw=true)
